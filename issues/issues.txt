@@ -1,0 +1,67 @@
+** The fonts on the first page have isssues, this has been reported not just by ashmew2, but also by a few more people that had access to the website. For instance, 'e' is cut. Assigned to : jammm
+
+
+----------------------------------CONTEST AT 10 PM FOR 3 hours on 28th March------------------------------------------
+
+
+* 404 page exists but is ugly. Please review/change accordingly. GIF ?
+
+* Change the /admin/ URL for admin panel to something unguessable. also change the weak user pass combo right now.
+
+* Whenever a system calls error is encountered, the admin should get a message and consequently message/ban the culprit.
+
+* Broadcasts should be forced onto the users as JS AlertBoxes possibly, so that they cannot complain that they missed it.
+
+* No country code selection option for phone number.
+
+* Nodes pages does not show the problem number
+
+* Queries not sent, Clicking submit does not do anything.
+
+* Remove No Messages to Display" from the Broadcast Message lists.
+
+* The delay of "Upload Sources" portion seems too long at times. Consider usign a shorter delay.
+
+-----------FIXED----------------
+
+* Constantly getting "Only C/C++ sources allowed" rendering it 
+impossible to submit valid C/C++ files (.c, .cc, .cpp, etc) FIXED. ashmew2.
+
+* Remove GLUP references asap.FIXED. Jamm.
+
+* Change "My Scores" to My Score or SCORE. FIXED. asdoc.
+
+* Missing verdicts when following the link to a user from the 
+leaderboard for some problems. (Possibly missing verdict for blocking 
+system calls). FIXED.
+
+*Change hover label text of the nodes page.
+
+*Any queries? REPORT is probably semantically incorrect. Change to "Any 
+Queries? "Ask an Admin! Or something more suitable.
+
+* Problem text not scrollable rendering it unreadable. Fixed.
+
+* What if someone wants to ask something about the ARENA and not a specific problem ? There is no REPORT or ASK button on the arena. Fixed.
+
+** On the leaderboard, add color coding for verdicts and change the usernames from a bluish color to something which constrasts with background. Fixed.  nishad94
+
+** In the registration form, passwords are not checked on the fly for matching each other. Assigned to : jammm
+
+** Usernames are case sensitive. This needs to be fixed in ALL circumstances. mrX and mrx should both be able to sign in and they 
+shouldn't be regarded as different usernames, both in the login script as well as when searching for already existing accounts in 
+the DB during registration. Assigned to : jammm
+
+** Instead of * removing the language drop down from the problem submission use :  If C then gcc , if C++ then .cpp , g++ in the Judge, 
+Assigned to : RS_18
+
+** Change the chroot to something obbfuscated. Shift the jail to /x/s/sd/as/da/sd/as/da/sd/asd/a/sda/sd/a/sd . 
+Check ulimits. Memory Limits.  Assigned to : RS_18
+
+** Warnings, Pipe all the stderr to somewhere else instead of stdout. : RS_18 (/dev/null)
+
+** Contest timer needs to be more prominent : Assigned to : asdoc
+
+** DO NOT run scripts as ROOT.
+
+** Runing contest should have a highlighted "CONTEST IS UNDERWAY". Assigned to : xennygrimmato

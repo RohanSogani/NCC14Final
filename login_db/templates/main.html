@@ -1,0 +1,53 @@
+<html lang = "en">
+
+Please perform submission below.
+
+<form name="input" action="upload/" method="post" enctype="multipart/form-data">
+User: {{ username }}
+<br>
+PID:
+<select name="PID">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+
+</select>
+
+<br><br>
+Language:
+<select name="language">
+  <option value="c">C</option>
+  <option value="cpp">C++</option>
+
+
+</select>
+
+
+<br><br>
+Verdict(output by judge):
+
+<select name="verdict">
+  <option value="0">Success</option>
+  <option value="1">Wrong Answer</option>
+  <option value="2">Compile-time error</option>
+  <option value="3">Timeout</option>
+  
+
+
+</select>
+
+
+<br><br>
+File: <input type="file" name="upload_file">
+<br><br>
+<input type="submit" value="Upload">
+</form> 
+
+</html>

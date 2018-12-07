@@ -1,0 +1,21 @@
+<html lang = "en">
+
+Successfully submitted <b>{{filename}}</b> for user <b>{{username}}</b>
+
+
+Submissions list:
+
+<table style="width:300px" border = 1>
+{% for submission in submissions %}
+<tr>
+  <td>{{submission.SID}}</td>
+  <td>{{submission.language}}</td>
+  <td>{{submission.UID}}</td>
+  <td>{{submission.PID}}</td>
+  <td>{{submission.timestamp}}</td>
+</tr>
+
+{% endfor %}
+</table> 
+
+</html>

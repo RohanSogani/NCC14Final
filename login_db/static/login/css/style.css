@@ -1,0 +1,308 @@
+html,
+body {
+	height: 100%;
+	width: 100%;
+	background-color: #FFF;
+}
+
+@font-face {
+  font-family: "cf_5";
+  src: url(../fonts/cf_5.otf) format("truetype");
+}
+
+@font-face {
+	font-family: "cf_3";
+	src: url(../fonts/cf_3.otf) format("truetype");
+}
+
+@font-face {
+	font-family: "cf_1";
+	src: url(../fonts/cf_1.ttf) format("truetype");
+}
+
+a:focus{
+	outline: 0;
+	border: none;
+}
+
+.btn:focus{
+  outline: 0;
+  border: none;
+}
+
+
+h1{
+	font-size: 60px;
+	font-family: "cf_5",Gadget,sans-serif;
+
+}
+
+h3{
+	font-family: "cf_5",Gadget,sans-serif;
+	font-size: 20px;
+}
+
+h2{
+	font-family: "cf_3",Gadget,sans-serif;
+	text-align: center;
+}
+
+
+.top-align{
+	margin-top: 150px;
+  top: 50%;    
+  position: relative;
+}
+
+#setbg{
+  height:100%;
+  width:100%;
+  background-image: url(../img/up.jpg);
+}
+
+#countdown {
+  color: #3B3B3B;
+}
+
+#header{
+  background-color: rgba(0,0,0,0.3);
+}
+
+#slogan{
+  font-family: "cf_5",Gadget,sans-serif;
+  color: white;
+  font-weight: 200;
+  font-size: 25px;
+}
+
+#countdown span {
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: "cf_5",Gadget,sans-serif; 
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#regbg{
+    width:100%;
+    background-image: url(../img/down.jpg);
+}
+
+#reg{
+    font-family: "Courier New", Courier, monospace;
+    font-size: 18px;
+    text-align: center;
+    background-color:
+}
+
+#ver_align{
+	margin-top: -150px;
+    top: 50%;    
+    position: relative;
+}
+
+#form_border{
+	border: 2px solid #808080;
+	border-radius: 7px;
+	padding: 30px 20px 20px 20px;
+    background-color: #333;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.set-font-weight{
+  font-weight: bold;
+  color: black;
+}
+
+#exampleInputUser1::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputFirstName1::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputLastName1::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputEmail1::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#pass1::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#pass2::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputCO1::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#number::-webkit-input-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputUser1::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputFirstName1::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputLastName1::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputEmail1::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#pass1::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#pass2::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#exampleInputCO1::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+
+#number::-moz-placeholder{
+  color: black;
+  text-align: center;
+  font-weight: 100;
+}
+.row{
+	text-align: center;
+}
+
+#contact{
+	font-family: "cf_1",Gadget,sans-serif;
+	font-size: 18px;
+}
+
+#contactbg{
+  width:100%;
+  //background-image: url(../img/back_9.jpg);
+}
+
+#teambg{
+  width:100%;
+  //background-image: url(../img/back_9.jpg);
+}
+
+#team{
+	font-family: "cf_1",Gadget,sans-serif;
+	font-size: 18px;
+}
+
+#aboutbg{
+  width:100%;
+  //background-image: url(../img/back_9.jpg);
+}
+
+#about{
+	font-family: "cf_1",Gadget,sans-serif;
+	font-size: 18px;
+}
+
+.flipcard{
+  text-align: center;
+  position: relative;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition:all 0.6s ease-in-out;
+  -webkit-transition:all 0.6s ease-in-out;
+
+  -moz-animation-name: bounce;
+  -moz-animation-duration: 1.5s;
+  -moz-animation-iteration-count: infinite ;
+  -moz-animation-direction: normal;
+
+  -webkit-animation-name: bounce;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite ;
+  -webkit-animation-direction: normal;
+}
+@-moz-keyframes bounce {
+   0% {
+     top:32px;
+ }
+ 25% {
+     top:7px;
+ }
+ 50% {
+     top:32px;
+ }
+ 75% {
+  top:7px;
+}
+100% {
+  top:32px;
+}
+}
+
+@-webkit-keyframes bounce {
+    0%{
+        top:20px;
+    }
+    
+    25% {
+        top:7px;
+    }
+
+    50%{
+        top:20px;
+    }
+ 
+    75%{
+        top:7px;
+    }
+
+    100%{
+        top:20px;
+    }
+}
+
+#arrow{
+    
+}

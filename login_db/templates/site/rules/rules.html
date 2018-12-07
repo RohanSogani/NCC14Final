@@ -1,0 +1,116 @@
+ <!DOCTYPE html>
+ {% load staticfiles %}
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>NCC - Rules</title> 
+          <!-- Bootstrap core CSS -->
+      <link href = "{% static 'leaderboard/css/bootstrap.css' %}" rel = "stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="{% static 'leaderboard/css/leaderboard.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+    <div class = "navbar-wrapper navbar-inverse navbar-static-top">
+      <div class = "container-fluid">                               
+        <a href = "../../" class = "navbar-brand"><span class="glyphicon glyphicon-home"></span> NCC</a>
+       
+
+        <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+        </button>
+
+        <div class = "collapse navbar-collapse navHeaderCollapse">                               
+          <ul class = "nav navbar-nav">                                      
+            <li><a href="javascript:window.history.back()"><span class="glyphicon glyphicon-remove"></span> Close</a></li>
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+
+      
+
+      <div class="container">
+        <div class="row" style="margin-left:150px;color:white;">
+          <div class="col-md-10"> <br> <br>
+            <h2 class="sub-header"style="text-align:center;">RULES</h2><br>
+            <div class="leadertable">
+            <p>
+<p>
+			<br />
+			1. Languages Allowed :&nbsp; C and C++ .<br />
+			2. The competition is exclusively for individuals (no groups or teams allowed).<br />
+			3. There will be a <b>30 second cooldown timer</b> after every solution submitted. While the timer is active, you cannot make any further submissions until the countdown goes to zero.<br />
+			<br />
+			<a href = "#format"><b>Contest Format</b></a><br />
+			<a href = "#ranking"><b>Ranking Criteria</b></a><br />
+			<a href = "#judge"><b>Code Execution Verdict</b></a><br />
+			<br />
+			<div id = "format">
+			<u><b>Format</b>:</u><br />
+			<br />
+			There are 4 levels in the contest. For accessing a level, you need to have points greater than or equal to the level&#39;s threshold value.<br />
+			Until you have the minimum number of required points, the corresponding levels will be locked.<br />
+			<br />A submission is judged as correct if your solution gives the correct answer to all testcases for that problem. No partial points are awarded.<br />
+			<br />Points will not be changed as the contest progresses.
+			<br />
+			Points required for Unlocking Levels :<br />
+			<br />
+			Level 1: 0 points.&nbsp; (Already Unlocked)<br />
+			Level 2: 12 points.<br />
+			Level 3: 30 points.<br />
+			Level 4: 40 points.<br />
+			<br />
+			Submitting a correct solution for a problem will award you the points associated with that problem.<br />
+			Submissions which are not judged as correct will not affect your score.<br />
+			Execution time of submissions greater than 2 seconds will lead to timeout.<br />
+			<br />
+			</div>
+			<div id = "ranking">
+			<b><u>Ranking</b></u>:<br />
+			<br />
+			The ranking is decided by the following (in order):<br />
+			<br />
+			1. Current Level of participant.<br />
+			2. Points earned on the current level.<br />
+			3. Points earned on previous levels.<br />
+			4. Time of most recent submission on current level.<br />
+			<br />
+			</div>
+			<div id = "judge">
+			<u><b>Code Execution Verdict</b></u>:<br />
+			<br />
+			The NCC online judge gives the following different verdicts :<br />
+			<br />
+			<font color = #A0522D><b>Timeout</b></font> : Your code exceeded the time limit allocated for that problem. Think of a way to do the problem faster!<br /><br />
+			<font color = #FF0000><b>Wrong Answer</b></font> : Your code's output did not match the right answer.<br /><br />
+			<font color = #FFD700><b>Compile Error</b></font> : Your code did not compile successfully on our system. <br /><br />
+			<font color = #778899><b>Judgement denied</b></font> : Your code contained malicious system calls that harm the content on our server. You are NOT supposed to try to break/harm the server in any way. If you repeat this, you will be banned.<br /><br />
+			<font color = #20B2AA><b>Runtime Error</b></font> : Your code compiled successfully but gave a runtime error. Examples of runtime errors: Memory limit exceeded, memory leak, divide by zero error(floating point exception), etc. Check your code again! <br /><br />
+			<font color = #228B22><b>Correct</b></font> : Your code produces the output that was expected!<br /><br />
+			<font color = #FFFFFF><b>In queue</b></font> : Your code is yet to be executed by the online judge, it is in queue. This will change to one of the above verdicts after it has been compiled , executed and checked. <br /><br />
+			</div>
+			In all cases, the decision of the NCC Judge shall be final.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src = "{% static 'leaderboard/js/jquery-1.11.0.min.js' %}"></script>
+      <script src = "{% static 'leaderboard/js/bootstrap.js' %}"></script>
+    </body>
+  </html>
+

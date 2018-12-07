@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>NCC</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href = "{% static 'login/css/bootstrap.css' %}" rel = "stylesheet">
+	<link type = "text/css" href = "{% static 'login/css/style.css' %}" rel = "stylesheet">
+</head>
+
+<body>
+	<div class = "navbar navbar-inverse navbar-fixed-top">
+		<div class = "container-fluid" id="home">                               
+			<a href = "#" id="homeLink" class = "navbar-brand"><span class="glyphicon glyphicon-home"></span> NCC</a>
+			{% if not logged_in %}
+			<form class="navbar-form navbar-right" role="form" action="/ncc/login/" method="POST">{% csrf_token %}
+				<div class="form-group">
+					<input type="text" placeholder="Username" class="form-control" name="uname" required aria-required=”true”>
+				</div>
+				<div class="form-group">
+					<input type="password" placeholder="Password" class="form-control" name="password" required aria-required=”true”>
+				</div>
+				<button type="submit" class="btn btn-success">Sign in</button>
+				&nbsp;&nbsp;
+				<button type="button" class="btn btn-danger" id="regLink">Register</button>
+			</form>
+			{% else %}
+			<form class="navbar-form navbar-right" role="form" action="/ncc/logout/">
+						<span style = "color:#999999;"> Welcome, </span>
+                		&nbsp;
+                		<span style = "color:#ccff66; text-align:center;">
+                		<a href="user/{{username}}">
+                			{{ username }}
+                		</a>
+                		</span>
+                		&nbsp;
+				<button type="submit" class="btn btn-info" name="logout">Logout</button>
+			</form>
+			{% endif %}
+
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+
+			<div class = "collapse navbar-collapse navHeaderCollapse">                               
+				<ul class = "nav navbar-nav navbar-center">					
+					<li><a href = "#" id = "aboutLink"><span class="glyphicon glyphicon-info-sign" ></span> About NCC</a></li>
+					<li><a href = "#" id = "teamLink"><span class="glyphicon glyphicon-user"></span> Contact Us</a></li>
+					<li><a href = "/ncc/main/"><span class="glyphicon glyphicon-th"></span> Arena</a></li>
+					<li><a href = "/ncc/rules/" target = "_blank"><span class="glyphicon glyphicon-chevron-right"></span> Rules</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+	</div>
+
+			<!--timer area-->
+			<div class="container-fluid" id = "setbg">				
+				<div class="row" id="ver_align">
+					<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#333; opacity:0.5; height:140px;">
+						<h1 style="text-align:center; color:white;margin-top; margin-top:35px;">NATIONAL COMPUTING CONTEST</h1>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+						<div class="content">
+							<div class="text">
+								<br><br>
+								<h3 style="text-align: center; color:white;">THE CONTEST BEGINS IN</h3>	  	          
+								<div id="countdown" style="text-align:center">
+								</div> <!--/#counter-->
+							</div><!--text-->    	  	        
+						</div> <!--/#content-->
+
+					</div> <!--/#columns-->
+				</div> <!--/#Row-->
+			</div> <!--/#container-fluid-->
+
+{% if not logged_in %}
+<div class="container-fluid" id="regbg">
+		<div class="row top-align" id = "reg">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style = "height:580px; top:50%;left:50%; margin-left:-220px;">
+				<form role="form" id="form_border"style="margin-top:-130px;"onsubmit = "return myFunction()">{% csrf_token %}
+
+					<h1 style = "text-align:center;font-size:30px; color:black"><b>REGISTRATION</b></h1><br>
+
+					<div class="form-group">
+						<input type="text" maxlength="30" class="form-control set-font-weight" name = "uname" id="exampleInputFullName1" placeholder="Username" required aria-required=”true” pattern="[a-z0-9_-]{3,30}" title = "Username length must range from 3-30 characters. Only alphanumeric and - and _ are accepted">
+					</div>
+					<div class="form-group">						
+						<input type="text" maxlength="30" class="form-control set-font-weight" id="exampleInputFullName1" placeholder="First Name" name = "firstname" required aria-required=”true”>
+					</div>
+					<div class="form-group">						
+						<input type="text" maxlength="30" class="form-control" id="exampleInputFullName1" placeholder="Last Name" name="lastname" required aria-required=”true”>
+					</div>
+					<div class="form-group">						
+						<input type="email" class="form-control set-font-weight" id="exampleInputEmail1" placeholder="Email Id" name = "email" required aria-required=”true”>
+					</div>
+					<div class="form-group" id = "password-1">						
+						<input type="password" class="form-control set-font-weight" name = "password" id="pass1" placeholder="Password" required aria-required=”true”>
+					</div>
+					<div class="form-group">						
+						<input type="password" class="form-control set-font-weight" id="pass2" placeholder="Confirm Password" required aria-required=”true”>
+					</div>
+					<div class="form-group">						
+						<input type="text" maxlength="254" class="form-control set-font-weight" id="exampleInputCO1" placeholder="College/Organisation" name = "college" required aria-required=”true”>
+					</div>
+					<div class="form-group" id = "contact">						
+						<input type="tel" maxlength="10" class="form-control set-font-weight" id="number" name = "phone" placeholder="Mobile Number (10 digits)"
+						required aria-required=”true” pattern="[0-9]{10}" title="Must be a 10 digit mobile number">
+					</div>
+					<div class="form-group" align = "center" id = "captcha">
+                        <script type="text/javascript"  
+                        src="http://api.recaptcha.net/challenge?k=6LeuffASAAAAAISH20eGOFqcL-t27ORgAiUeAzgD">  
+                        </script>  
+                          
+                        <noscript>  
+                        <iframe src="http://api.recaptcha.net/noscript?k=6LeuffASAAAAAISH20eGOFqcL-t27ORgAiUeAzgD"  
+                        height="300" width="500" frameborder="0"></iframe><br>  
+                        <textarea name="recaptcha_challenge_field" rows="3" cols="40">  
+                        </textarea>  
+                        <input type="hidden" name="recaptcha_response_field"   
+                        value="manual_challenge">  
+                        </noscript>
+                    </div>
+
+					<button type="submit" class="btn btn-success" id="regSubmit">Submit</button>
+
+				</div>  <!--/#col-md-8-->
+				</form>
+			</div>	<!--end of row-->
+		</div> <!--/#container-fluid-->	
+{% endif %}
+
+	<div id = "aboutbg">
+	<div class="container">
+		<div class="row top-align" id = "about">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style = "height:580px;">
+				<h1 style="color:black;"><b>About NCC</b></h1><br><br><p style="color:black;"><b>National computing contest is an annual computing contest organized by PICT IEEE Student Branch
+The very first NCC event took place in 2009 with a motive to introduce computational and real life problems in a new and innovative way.
+NCC consists of problems based on data structures, algorithms and general logic. Every year, a new and interesting format is created for the contest. All the funds that are collected through NCC are donated to  <a href="http://www.nalinifoundation.org/" >Nalini Foundation</a> to support their cause.</b></p>
+
+					
+				</div>  <!--/#col-md-8-->
+
+			</div>	<!--end of row-->
+		</div> <!--/#container-fluid-->
+	</div>
+
+		<div id = "teambg">
+		<div class="container">
+		<div class="row top-align" id = "team">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style = "height:580px;">
+				<b><h1 style = "color:black;">Contact Us</h1></b>
+				<p style = "color:black;"><br><br><b>Aditya Sarode</b><br><b>9404792579</b><br><b>ncc.ieee@gmail.com</b></p>
+				<p style = "color:black;"><br><br><b>Aditya Sarode</b><br><b>9404792579</b><br><b>ncc.ieee@gmail.com</b></p><br>
+
+					<!--h2 style = "color:white;">NCC'14</h2>
+					<p style = "color:white;">A series of challenging coding problems to test not only your coding skills but also your logical approach towards them. The contest spans for 4 hours and 4 levels. You advance to next level by clearing the minimal threshold of the current level.</p>
+					<p style = "color:white;"> The winner is the contestant who crosses the maximum number of levels. A tie on levels is broken by a contestant's cummulative score. The contestant with the maximum score among these wins. If this too leads to a tie, then the contestants' cummulative submission time will be taken into account.</p>
+					<p style = "color:white;">Get ready for an engrossing duel!</p-->
+					
+				</div>  <!--/#col-md-8-->
+
+			</div>	<!--end of row-->
+		</div> <!--/#container-fluid-->
+		</div>		
+
+
+
+<script src = "{% static 'login/js/jquery-1.11.0.min.js' %}"></script>
+<script src = "{% static 'login/js/bootstrap.js' %}"></script>
+<script src = "{% static 'login/js/myscript.js' %}"></script>
+
+<script src="{% static 'js/noty/packaged/jquery.noty.packaged.min.js' %}"></script>
+<script src="{% static 'js/noty/layouts/top.js' %}"></script>
+<script src="{% static 'js/noty/layouts/center.js' %}"></script>
+<script src="{% static 'js/noty/themes/default.js' %}"></script>
+
+
+<script type="text/javascript" src = "{% static 'login/js/scroll_bitch_scroll.js' %}"></script>
+
+<script type="text/javascript">
+$.ajaxSetup({ cache: false });
+
+
+jQuery(document).ready(function($){
+
+
+{% if error_login %}
+var n = noty({text: "{{ error_text }}", timeout: 3000, type: 'error',layout: 'center'});
+{% endif %}
+
+
+
+    $('#regSubmit').prop('disabled',false);         
+
+	$(window).bind('resize', function()
+	{
+		resizeMe();
+	}).trigger('resize');
+
+});
+
+
+function resizeMe() {
+	var preferredHeight = 768;  
+
+	var displayHeight = $(window).height();
+	var percentage = displayHeight / preferredHeight;
+	var newFontSize = Math.floor(fontsize * percentage) - 1;
+	$("body").css("font-size", newFontSize);
+}
+
+	$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'bottom'});
+
+
+
+function myFunction() {
+    var pass1 = document.getElementById("pass1").value;
+    var pass2 = document.getElementById("pass2").value;
+    var ok = true;
+    if (pass1 != pass2) {
+	var n = $('#password-1').noty({text: "Passwords Do not match!", maxVisible: 2, killer : true, timeout: 3000, type: 'warning'});
+        document.getElementById("pass1").style.borderColor = "#E34234";
+        document.getElementById("pass2").style.borderColor = "#E34234";
+        ok = false;
+    }
+
+   if(ok)
+   {
+	    $('#regSubmit').prop('disabled',true);   
+	    var formData = new FormData($('form')[1]);
+	    $.ajax({
+		dataType: "json",
+		url: '/ncc/register/out/',  //Server script to process data
+		type: 'POST',
+		//Ajax events
+
+		//call return_status if POST request is successful
+		success: function (data) {
+		    
+		    $('#regSubmit').prop('disabled',false); 
+		    if(data['value'] == 0)
+		    {
+		    var n = noty({text: data['message'], timeout: 3000, type: 'information'});
+		    setTimeout(function() {
+	            window.location.href = "/ncc/main";
+		}, 1000);
+		    }
+		    else if(data['value'] == -1)
+	        {
+	            var n = noty({text: data['message'], timeout: 3000, type: 'information'});
+	            Recaptcha.reload();
+	        }
+	        else if(data['value'] == -2)
+	        {
+	            var n = $('#captcha').noty({text: data['message'], timeout: 3000, type: 'error', layout: 'center'});
+	            Recaptcha.reload();
+	        }
+		    
+		},
+
+		// Form data
+		data: formData,
+
+		cache: false,
+		contentType: false,
+		processData: false
+	    });
+   }
+	
+
+
+
+
+
+
+
+    return false;
+}
+</script>
+
+</body>
+</html>

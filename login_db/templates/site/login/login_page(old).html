@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<title>NCC</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href = "{% static 'login/css/bootstrap.css' %}" rel = "stylesheet">
+	<link type = "text/css" href = "{% static 'login/css/style.css' %}" rel = "stylesheet">
+</head>
+
+<body>
+	<div class = "navbar navbar-inverse navbar-fixed-top">
+		<div class = "container" id="home">                               
+			<a href = "#" id="homeLink" class = "navbar-brand"><span class="glyphicon glyphicon-home"></span> NCC</a>
+			<form class="navbar-form navbar-right" role="form" action="/ncc/login/" method="POST">
+				<div class="form-group">
+					<input type="text" placeholder="Username" class="form-control" name="uname" required>
+				</div>
+				<div class="form-group">
+					<input type="password" placeholder="Password" class="form-control" name="password" required>
+				</div>
+				<button type="submit" class="btn btn-success">Sign in</button>
+				&nbsp;&nbsp;
+				<button type="button" class="btn btn-danger" id="regLink">Register</button>
+			</form>
+
+			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+				<span class = "icon-bar"></span>
+			</button>
+
+			<div class = "collapse navbar-collapse navHeaderCollapse">                               
+				<ul class = "nav navbar-nav navbar-center">					
+					<li><a href = "#" id = "aboutLink"><span class="glyphicon glyphicon-info-sign" ></span> About Us</a></li>
+					<li><a href = "#" id = "teamLink"><span class="glyphicon glyphicon-user"></span> Our Team</a></li>             
+					<li><a href = "#" id = "contactLink"><span class="glyphicon glyphicon-phone"></span> Contact Us</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+	</div>
+
+			<!--timer area-->
+			<div class="container" id = "setbg">				
+				<div class="row" id="ver_align">
+					<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color:#333; opacity:0.75; height:140px;">
+						<h1 style="text-align:center; color:white;margin-top; margin-top:35px;">NATIONAL COMPUTING CONTEST</h1>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+						<div class="content">
+							<div class="text">
+								<br><br>
+								<h3 style="text-align: center; color:white;">THE CONTEST BEGINS IN</h3>	  	          
+								<div id="countdown" style="text-align:center">
+								</div> <!--/#counter-->
+							</div><!--text-->    	  	        
+						</div> <!--/#content-->
+
+					</div> <!--/#columns-->
+				</div> <!--/#Row-->
+			</div> <!--/#container-->
+
+<div class="container" id="regbg">
+		<div class="row top-align" id = "reg">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style = "height:580px; left:50%; margin-left:-220px;">
+				<form role="form" id="form_border" style="margin-top:-35px;" action = "" method="POST">
+					<label for="exampleInputEmail1" style = "text-align:center;font-size:30px;">REGISTRATION</label><br><br>
+
+					<div class="form-group">
+
+						<input type="user" class="form-control" id="exampleInputUser1" placeholder="Username" name="uname" required>
+					</div>
+					<div class="form-group">						
+						<input type="first_name" class="form-control" id="exampleInputFullName1" placeholder="First Name" name="firstname" required>
+					</div>
+					<div class="form-group">						
+						<input type="last_name" class="form-control" id="exampleInputFullName1" placeholder="Last Name" name="lastname" required>
+					</div>
+					<div class="form-group">						
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email Id" name="email">
+					</div>
+					<div class="form-group">						
+						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+					</div>
+					<div class="form-group">						
+						<input type="cpassword" class="form-control" id="exampleInputCPassword1" placeholder="Confirm Password" required>
+					</div>
+					<div class="form-group">						
+						<input type="co" class="form-control" id="exampleInputCO1" placeholder="College/Organisation" name="college" required>
+					</div>
+					<div class="form-group">						
+						<input type="contact" class="form-control" id="exampleInputContact1" placeholder="Contact Number" name="phone" required>
+					</div>
+
+					<button type="submit" class="btn btn-success" id="regSubmit">Submit</button>
+
+				</div>  <!--/#col-md-8-->
+				</form>
+			</div>	<!--end of row-->
+		</div> <!--/#container-->	
+
+	<div class="container">
+		<div class="row top-align" id = "about">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style = "height:580px;">
+				<h2 style = "">How we started?</h2>
+				<p>NCC is an event intiated under PICT IEEE Student Branch, started by programmers, for programmers.
+					It's an annual programming competition for everyone to test their skills and be a part of a challenge that is one of a kind. NCC was conceived with only one goal in mind, that is to find the programmer in you.</p> <br>
+
+
+					<h2 style = >NCC'14</h2>
+					<p>A series of challenging coding problems to test not only your coding skills but also your logical approach towards them. The contest spans for 4 hours and 4 levels. You advance to next level by clearing the minimal threshold of the current level.</p>
+					<p> The winner is the contestant who crosses the maximum number of levels. A tie on levels is broken by a contestant's cummulative score. The contestant with the maximum score among these wins. If this too leads to a tie, then the contestants' cummulative submission time will be taken into account.</p>
+					<p>Get ready for an engrossing duel!</p>
+					<hr>
+				</div>  <!--/#col-md-8-->
+
+			</div>	<!--end of row-->
+		</div> <!--/#container-->
+
+		<div class="container">
+		<div class="row top-align" id = "team">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style = "height:580px;">
+				<h2 style = >How we started?</h2>
+				<p>NCC is an event intiated under PICT IEEE Student Branch, started by programmers, for programmers.
+					It's an annual programming competition for everyone to test their skills and be a part of a challenge that is one of a kind. NCC was conceived with only one goal in mind, that is to find the programmer in you.</p>
+
+
+					<h2 style = >NCC'14</h2>
+					<p>A series of challenging coding problems to test not only your coding skills but also your logical approach towards them. The contest spans for 4 hours and 4 levels. You advance to next level by clearing the minimal threshold of the current level.</p>
+					<p> The winner is the contestant who crosses the maximum number of levels. A tie on levels is broken by a contestant's cummulative score. The contestant with the maximum score among these wins. If this too leads to a tie, then the contestants' cummulative submission time will be taken into account.</p>
+					<p>Get ready for an engrossing duel!</p>
+					<hr>
+				</div>  <!--/#col-md-8-->
+
+			</div>	<!--end of row-->
+		</div> <!--/#container-->		
+
+		<div class="container">
+		<div class="row top-align" id = "contact">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style = "height:580px;">
+				<h2 style = >How we started?</h2>
+				<p>NCC is an event intiated under PICT IEEE Student Branch, started by programmers, for programmers.
+					It's an annual programming competition for everyone to test their skills and be a part of a challenge that is one of a kind. NCC was conceived with only one goal in mind, that is to find the programmer in you.</p>
+					<br>
+					<h2 style = >NCC'14</h2>
+					<p>A series of challenging coding problems to test not only your coding skills but also your logical approach towards them. The contest spans for 4 hours and 4 levels. You advance to next level by clearing the minimal threshold of the current level.</p>
+					<p> The winner is the contestant who crosses the maximum number of levels. A tie on levels is broken by a contestant's cummulative score. The contestant with the maximum score among these wins. If this too leads to a tie, then the contestants' cummulative submission time will be taken into account.</p>
+					<p>Get ready for an engrossing duel!</p>
+					<hr>
+				</div>  <!--/#col-md-8-->
+
+			</div>	<!--end of row-->
+		</div> <!--/#container-->
+			
+
+		<!--footer navbar-->
+		<div class = "navbar navbar-inverse navbar-static-bottom">
+		</div>
+
+<script src = "{% static 'login/js/jquery-1.11.0.min.js' %}"></script>
+<script src = "{% static 'login/js/bootstrap.js' %}"></script>
+<script src = "{% static 'login/js/myscript.js' %}"></script>
+<script type="text/javascript" src = "{% static 'login/js/register2.js' %}"></script>
+<script type="text/javascript" src = "{% static 'login/js/scroll_bitch_scroll.js' %}"></script>
+
+<script src="{% static 'js/noty/packaged/jquery.noty.packaged.min.js' %}"></script>
+<script src="{% static 'js/noty/layouts/top.js' %}"></script>
+<script src="{% static 'js/noty/themes/default.js' %}"></script>
+
+
+
+
+<script>
+    $(document).ready(function(){
+
+    $('#regSubmit').prop('disabled',false);         
+            
+    
+ 
+            
+    $('#form_border').submit(function(){
+    $('#regSubmit').prop('disabled',true);   
+    var formData = new FormData($('form')[1]);
+    $.ajax({
+        url: '/ncc/register/out/',  //Server script to process data
+        type: 'POST',
+        //Ajax events
+
+        //call return_status if POST request is successful
+        success: function (data) {
+            var n = noty({text: data, timeout: 3000, type: 'information'});
+            $('#regSubmit').prop('disabled',false); },
+
+        // Form data
+        data: formData,
+
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+    return false;
+});         
+            
+            
+            
+            
+            
+});
+
+    
+    
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

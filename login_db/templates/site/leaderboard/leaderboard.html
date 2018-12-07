@@ -1,0 +1,177 @@
+ <!DOCTYPE html>
+ {% load staticfiles %}
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>NCC - Leaderboard</title> 
+          <!-- Bootstrap core CSS -->
+      <link href = "{% static 'leaderboard/css/bootstrap.css' %}" rel = "stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="{% static 'leaderboard/css/leaderboard.css' %}" rel="stylesheet">
+      <script>
+      function contest_timer()
+      {
+        var to_end;
+        var xmlhttp;
+         if (window.XMLHttpRequest)
+          {// code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp=new XMLHttpRequest();
+          }
+          else
+          {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlhttp.open("GET","/ncc/timer/timeleft/",true);
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xmlhttp.send();
+          xmlhttp.onreadystatechange=function()
+          {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+              to_end = parseInt(xmlhttp.responseText);
+            }
+          }
+          
+
+          
+	    var myTimer = setInterval(function()
+	    {
+        
+          if(to_end==0) 
+	      {
+	        document.getElementById("contest-timer").innerHTML= "The contest has Ended";
+			clearInterval(myTimer);
+	        return;
+	      }
+	      
+		  to_end = to_end - 1;
+          if( isNaN(to_end) )
+          {
+              return ;
+          }
+ 	      var secs = Math.floor(to_end%60);
+		  var mins = Math.floor((to_end/60)%60);
+		  var hrs = Math.floor(to_end/3600);
+		
+		  var ans = toString(hrs);
+		  ans += ":";
+		  var ans = toString(mins);
+		  ans += ":";
+		  var ans = toString(secs);
+		  		if(secs<=9 && mins <= 9)
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":0"+mins+":0"+secs);
+		}
+		else if (secs<=9)
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":"+mins+":0"+secs);
+		}
+		else if (mins<=9)
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":0"+mins+":"+secs);
+		}
+		else
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":"+mins+":"+secs);
+		}
+	    },1000);
+      }
+      </script>
+    </head>
+
+    <body onload="contest_timer()">
+    <div class = "navbar-wrapper navbar-inverse navbar-fixed-top">
+      <div class = "container-fluid">                               
+        <a href = "/ncc/" class = "navbar-brand"><span class="glyphicon glyphicon-home"></span> NCC</a>
+        <form class="navbar-form navbar-right" role="form" action="/ncc/logout/">
+            <span style = "color:#999999;">Welcome, </span>
+            &nbsp;
+            <span style = "color:#ccff66; text-align:center;">
+            	<a href="../../user/{{loggedInUser}}">
+            		{{loggedInUser}}
+            	</a>
+            </span>
+            &nbsp;
+            <button type="submit" class="btn btn-info">Logout</button>
+        </form>
+
+        <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+        </button>
+
+        <div class = "collapse navbar-collapse navHeaderCollapse">                               
+          <ul class = "nav navbar-nav">                                       
+            <li><a href = "/ncc/main/"><span class="glyphicon glyphicon-th"></span> Arena</a></li>
+             <li><span style="top:6px;color:#FF5555;font-weight:bold;font-size:35px;left:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      <span class = "badge" id="contest-timer" style="top:6px;color:black;font-weight:bold;font-size:32px;left:20px;"></span>
+              </li>
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+
+      
+
+      <div style="top:8%;position:absolute;left:5%;" class="container">
+        <div class="row" style="margin-left:150px;color:white;">
+          <div class="col-md-10"> <br> <br>
+            <h2 class="sub-header"style="text-align:center;">LEADERBOARD</h2><br>
+            <div class="leadertable">
+              <table class="table" style="text-align:center;">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Level</th>
+                    <th>Score</th>
+                    <!--<th>??Time</th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                 <!-- <tr>
+                    <td>1,001</td>
+                    <td>Lorem</td>
+                    <td>ipsum</td>
+                    <td>dolor</td>
+                    <td>sit</td>
+                  </tr>
+                  <tr>
+                    <td>1,002</td>
+                    <td>amet</td>
+                    <td>consectetur</td>
+                    <td>adipiscing</td>
+                    <td>elit</td>
+                  </tr> -->
+                  {% for current_user in users %}
+                  <tr>
+					<td>{{forloop.counter}}</td>
+					<td><a style="color:white;" href = "/ncc/user/{{current_user.UID.username}}">{{current_user.UID.username}}</a></td>
+					<td>{{current_user.current_level}}</td>
+					<td>{{current_user.score}}</td>
+                  </tr>
+                  {% endfor %} 
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src = "{% static 'leaderboard/js/jquery-1.11.0.min.js' %}"></script>
+      <script src = "{% static 'leaderboard/js/bootstrap.js' %}"></script>
+    </body>
+  </html>

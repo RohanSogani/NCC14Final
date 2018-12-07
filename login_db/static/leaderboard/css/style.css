@@ -1,0 +1,221 @@
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	background-color: #FFF;
+}
+
+@font-face {
+  font-family: "cf_5";
+  src: url(../fonts/cf_5.otf) format("truetype");
+}
+
+@font-face {
+	font-family: "cf_3";
+	src: url(../fonts/cf_3.otf) format("truetype");
+}
+
+@font-face {
+	font-family: "cf_1";
+	src: url(../fonts/cf_1.ttf) format("truetype");
+}
+
+a:focus{
+	outline: 0;
+	border: none;
+}
+
+.btn:focus{
+  outline: 0;
+  border: none;
+}
+
+
+h1{
+	font-size: 60px;
+	font-family: "cf_5",Gadget,sans-serif;
+	text-shadow: black 0.3em 0.3em 0.3em; 
+}
+
+h3{
+	font-family: "cf_5",Gadget,sans-serif;
+	font-size: 20px;
+}
+
+h2{
+	font-family: "cf_3",Gadget,sans-serif;
+	text-align: center;
+}
+
+
+.top-align{
+	margin-top: 150px;
+    top: 50%;    
+    position: relative;
+}
+
+ #setbg{
+ 	height:100%;
+ 	width:100%;
+ 	background-image: url(../img/back_2.jpg);
+ }
+
+ #countdown {
+  color: #3B3B3B;
+}
+
+#countdown span {
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: "cf_5",Gadget,sans-serif; 
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+ #regbg{
+ 	width:100%;
+ 	background-image: url(../img/back_9.jpg);
+}
+
+#reg{
+  font-family: "cf_1",Gadget,sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+#ver_align{
+	margin-top: -150px;
+    top: 50%;    
+    position: relative;
+}
+
+#form_border{
+	border: 2px solid #808080;
+	border-radius: 7px;
+	padding: 30px 20px 20px 20px;
+}
+
+.set-font-weight{
+  font-weight: bold;
+  color: black;
+}
+
+#exampleInputUser1::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputFullName1::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputEmail1::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#pass1::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#pass2::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputCO1::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#number::-webkit-input-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputUser1::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputFullName1::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputEmail1::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#pass1::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#pass2::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#exampleInputCO1::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+
+#number::-moz-placeholder{
+    color: #999999;
+    text-align: center;
+    font-weight: 100;
+}
+.row{
+	text-align: center;
+}
+
+#contact{
+	font-family: "cf_1",Gadget,sans-serif;
+	font-size: 18px;
+}
+
+#contactbg{
+  width:100%;
+  background-image: url(../img/back_9.jpg);
+ }
+
+#teambg{
+  width:100%;
+  background-image: url(../img/back_9.jpg);
+ }
+
+#team{
+	font-family: "cf_1",Gadget,sans-serif;
+	font-size: 18px;
+}
+
+#aboutbg{
+  width:100%;
+  background-image: url(../img/back_9.jpg);
+ }
+
+#about{
+	font-family: "cf_1",Gadget,sans-serif;
+	font-size: 18px;
+}

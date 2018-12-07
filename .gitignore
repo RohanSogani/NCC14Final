@@ -1,0 +1,7 @@
+*~
+*.swp
+*.swo
+*.sqlite3
+judge/jail/
+jamp/settings.py
+jamp/settings.pyc

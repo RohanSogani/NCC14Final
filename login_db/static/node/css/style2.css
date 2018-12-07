@@ -1,0 +1,100 @@
+	
+html,
+body {
+	height: 100%;
+	background-color: #333;
+	//background-image: url(../js/front.jpg);
+}
+.col-md-8
+{
+	background: #B2B2B2;
+	height: 550px;
+	width: 800px;
+	border-radius: 7px;
+	margin-left: 35px;
+}
+
+.col-md-2{
+	background: #B2B2B2;
+	height: 235px;
+	width: 260px;
+	border-radius: 7px;
+	margin-bottom: 5px;
+}
+
+.col-md-1{
+	height: 550px;
+	width: 1px;
+	border-radius: 7px;
+}
+
+.col-md-3{
+	margin-top: 20px;
+	vertical-align: text-top;
+	//background-image: url(../js/front_2.jpg);
+	height: 400px;
+	border-radius :7px;
+	margin-left: 70px;
+}
+
+.col-md-7{
+	margin-top: 20px;
+	margin-left: 45px;
+	//background-image: url(../js/front_2.jpg);
+	height: 600px;
+	border-radius :7px;
+	margin-bottom: 20px
+}
+	
+
+.jumbotron{
+	border-radius: 7px;
+	height: 780px;
+	margin-left: 30px;
+	margin-right: 30px;
+	background-image: url(../js/front.jpg);
+	color: white;
+	text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+.counter {
+	background: #2C2C2C;
+	-moz-box-shadow:    inset 0 0 5px #000000;
+	-webkit-box-shadow: inset 0 0 5px #000000;
+	box-shadow:         inset 0 0 5px #000000;
+	min-height: 150px;
+	text-align: center;
+}
+
+.counter h3 {
+	color: blue;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: lighter;
+	letter-spacing: 1px;
+	padding-top: 20px;
+	margin-bottom: 30px;
+}
+
+#countdown {
+	color: blue;
+}
+
+#countdown span {
+	color: blue;
+	font-size: 26px;
+	font-weight: normal;
+	margin-left: 20px;
+	margin-right: 20px;
+	text-align: center;
+}
+
+.container {
+  margin: 0px auto;
+  padding: 0px;
+}
+
+.content {
+  padding: 10px 44px;
+}

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+
+    <title>NCC - Nodes</title> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'node/css/bootstrap.css' %}" rel = "stylesheet">
+    <link href="{% static 'node/css/nodes.css' %}" rel="stylesheet">
+    <script src = "{% static 'node/js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/noty/packaged/jquery.noty.packaged.min.js' %}"></script>
+    <script src = "{% static 'js/jquery.cookie.js' %}"></script> 
+      <script>
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    var csrftoken = $.cookie('csrftoken');
+    $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+function load_notifs()
+{
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+	{	
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{	
+		// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+            var to_save = "Messages";
+            document.getElementById("rednoti").innerHTML=to_save;
+			document.getElementById("msgs").innerHTML = xmlhttp.responseText; 
+            document.getElementById("rednotispan").style.color="grey";
+		}
+	}
+	xmlhttp.open("GET","../notifs",true);
+	xmlhttp.send();
+}
+
+
+function notifs_cnt()
+{
+    var cnt = {{ notifs_cnt }};
+    setInterval(function()
+    {
+    
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+	{	
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{	
+		// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+            var tcnt = parseInt(xmlhttp.responseText);  
+			if( tcnt > cnt )
+            {
+                var tmp = (tcnt - cnt);
+                cnt = tcnt;
+                var to_save2 = "Messages: "+tmp;
+                var to_save = to_save2.bold().fontcolor("#ff7777");
+                document.getElementById("rednotispan").style.color="#ff7777";
+                document.getElementById("rednoti").innerHTML=to_save;
+            }
+		}
+	}
+	xmlhttp.open("GET","../notifscnt",true);
+	xmlhttp.send();
+        
+    
+    },5000);
+}
+
+function fetch_noti()
+{
+    var cnt = 0;    
+	var xmlhttp;
+	
+	if (window.XMLHttpRequest)
+	{	
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{	
+		// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+            var tcnt = parseInt(xmlhttp.responseText);  
+			if( tcnt > cnt )
+            {
+                var tmp = (tcnt - cnt);
+                cnt = tcnt;
+                var to_save2 = "Messages: "+tmp;
+                var to_save = to_save2.bold().fontcolor("#ff7777");
+                document.getElementById("rednotispan").style.color="#ff7777";
+                document.getElementById("rednoti").innerHTML=to_save;
+            }
+		}
+	}
+	xmlhttp.open("GET","../notifscnt",true);
+	xmlhttp.send();
+}
+
+    </script>
+
+        <style>
+        .black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=80);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 10%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            padding: 16px;
+            border: 16px solid grey;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+    </style>
+
+      
+      
+      <script>
+    $(document).mouseup(function (e)
+    {
+        var container = $("#notifs_div");
+
+        if (!container.is(e.target) // if the target of the click isn't the container...
+            && container.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            container.hide();
+        }
+        
+        container = $("#clarify_div");
+
+        if (!container.is(e.target)
+            && container.has(e.target).length === 0)
+        {
+            container.hide();
+        }
+        
+    });
+
+      function contest_timer()
+      {
+        var to_end;
+        var xmlhttp;
+         if (window.XMLHttpRequest)
+          {// code for IE7+, Firefox, Chrome, Opera, Safari
+              xmlhttp=new XMLHttpRequest();
+          }
+          else
+          {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          }
+          xmlhttp.open("GET","/ncc/timer/timeleft/",true);
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xmlhttp.send();
+          xmlhttp.onreadystatechange=function()
+          {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+              to_end = parseInt(xmlhttp.responseText);
+            }
+          }
+          
+
+          
+	    var myTimer = setInterval(function()
+	    {
+        	if(to_end==0) 
+	      {
+	        document.getElementById("contest-timer").innerHTML= "The contest has ended";
+			location.reload();
+			clearInterval(myTimer);
+	        return;
+	      }
+	      
+		  to_end = to_end - 1;
+          if ( isNaN(to_end) )
+          {
+              return ;
+          }
+ 	      var secs = Math.floor(to_end%60);
+		  var mins = Math.floor((to_end/60)%60);
+		  var hrs = Math.floor(to_end/3600);
+		
+		  var ans = toString(hrs);
+		  ans += ":";
+		  var ans = toString(mins);
+		  ans += ":";
+		  var ans = toString(secs);
+		  		if(secs<=9 && mins <= 9)
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":0"+mins+":0"+secs);
+		}
+		else if (secs<=9)
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":"+mins+":0"+secs);
+		}
+		else if (mins<=9)
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":0"+mins+":"+secs);
+		}
+		else
+		{
+			document.getElementById("contest-timer").innerHTML= (hrs+":"+mins+":"+secs);
+		}
+	    },1000);
+      }
+      
+      
+      </script>
+</head>
+
+<body onload="contest_timer(); notifs_cnt();  ">
+    	<div id="notifs_div" class="white_content">
+		<a position="absolute" style="float:right;" href = "javascript:void(0)" onclick = "document.getElementById('notifs_div').style.display='none';">X</a>
+		<div id="msgs" >Loading ... </div>
+	</div>
+	
+	
+	<div id="clarify_div" class="white_content" align = "center">
+	    <a position="absolute" style="float:right;" href = "javascript:void(0)" onclick = "document.getElementById('clarify_div').style.display='none';">X</a>
+	    <h2 align = "center">Report problems/queries</h2>
+	    <p align = "center">If you have any problems, or need any clarifications, please use the form below.<br>Make sure to specify the problem name and be as descriptive as possible.</p>
+		<div id="clarify" style="top:60;left 30">  <form id = "clarify_form" method="post"  >{% csrf_token %}<textarea type="textarea" cols="40" rows="5" maxlength = "500"  name = "heading"></textarea><br><input type="submit" value = "Submit" ></form>Max length: 500 characters. </div>
+	</div>
+
+
+
+	<div class = "navbar navbar-inverse navbar-fixed-bottom">		
+		<div class = "container">
+			<p class = "navbar-text pull-left">Having doubts?</p>
+			<a href = "javascript:void(0)" onclick="document.getElementById('clarify_div').style.display='block';" class = "navbar-btn btn-danger btn" id = "report_button">Ask</a>
+    </div>
+    
+    
+
+	</div>    
+    <div class = "navbar navbar-inverse navbar-fixed-top">
+        <div class = "container-fluid">                               
+            <a href = "/ncc/" class = "navbar-brand"><span class="glyphicon glyphicon-home"></span> NCC</a>
+            <form class="navbar-form navbar-right" role="form" action="/ncc/logout/">
+                <span style = "color:#94dbff;"> Welcome,</span>
+                &nbsp;
+                <a href="../user/{{username}}">
+                    <span style = "color:#ccff66; text-align:center;">{{ username }}</span>
+                </a>
+                &nbsp;
+                <button type="submit" class="btn btn-info">Logout</button>
+            </form>
+
+            <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+                <span class = "icon-bar"></span>
+                <span class = "icon-bar"></span>
+                <span class = "icon-bar"></span>
+            </button>
+
+            <div class = "collapse navbar-collapse navHeaderCollapse">                               
+                <ul class = "nav navbar-nav">                                       
+                  <!--<li><a href = "#"><span class="glyphicon glyphicon-question-sign"></span> My Score </a></li> 
+                  <li><a href = "/ncc/main/"><span class="glyphicon glyphicon-th"></span> Arena</a></li>-->
+                  <li><a href = "/ncc/main/leaderboard/"><span class="glyphicon glyphicon-tower"></span> Leaderboard</a></li>
+                  <li><a href="javascript:void(0)" onclick = "document.getElementById('notifs_div').style.display='block';load_notifs()"><span id="rednotispan" class="glyphicon glyphicon-folder-close"></span> <msgtag  id="rednoti">Messages</msgtag></a></li>
+                  <li><a href = "/ncc/rules/"><span class="glyphicon glyphicon-chevron-right"></span> Rules</a></li>
+                  <li><span style="top:6px;color:#FF5555;font-weight:bold;font-size:35px;left:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <span class = "badge" id="contest-timer" style="top:6px;color:black;font-weight:bold;font-size:32px;left:20px;"></span>
+                     </li>
+                <!--The changes made for the nodes legend start here>
+                  <li id = "levels">
+                    <span class = "navbar-text" style = "color:#29a3cc;"> Available: </span>
+                    <li><a id="prob1" class="btn" href="#"><span id="point1" class="available"></span></a></li>
+                    <span class = "navbar-text" style = "color:#999999;"> Locked: </span>
+                    <li><a id="prob2" class="btn" href="#"><span id="point1" class="locked"></span></a></li>
+                    <span class = "navbar-text" style = "color:#1aaf5d;"> Correct: </span>
+                    <li><a id="prob3" class="btn" href="#"><span id="point1" class="correct"></span></a></li>
+                    <span class = "navbar-text" style = "color:#cc0000;"> Wrong: </span>
+                    <li><a id="prob4" class="btn" href="#"><span id="point1" class="wrong"></span></a></li>
+                  </li>
+                  <!--The changes end here-->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="header" style="position:absolute;top:4%;left:33%;" >
+    <br>
+        <h3>CHOOSE A PROBLEM TO CONTINUE</h3>
+    </div>
+
+    <div id="nodes" class="container-fluid" style="position:absolute;top:15%;left:7%;text-align:center" >
+        {% if userStats.current_level >= 4 %}
+        <div id="level 4" class="container">
+            <div class="row" style="margin-top:25px">
+                <div class="col-md-12">         
+                    <a id="prob10" class="btn" href="/ncc/main/arena/10">       
+		      {% if userStats.problems_status.9 == '0' %}
+                        <span id="point"class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.9 == '1' %}
+			<span id="point"class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point"class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+            </div>
+        </div>
+	{% else %}
+        <div id="level 4" class="container">
+            <div class="row" style="margin-top:25px">
+                <div class="col-md-12">         
+                    <a id="prob10l" class="btn" href="#">       
+                        <span id="point" class="rippleLockedProblem"></span>
+                    </a>            
+                </div>
+            </div>
+        </div>
+	{% endif %}
+	
+	{% if userStats.current_level >= 3 %}
+        <div id="level 3" class="container">
+            <div class="row" style="margin-top:45px">
+
+                <div class="col-md-6" style="padding-left:205px">         
+                    <a id="prob8" class="btn" href="/ncc/main/arena/8">       
+		      {% if userStats.problems_status.7 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.7 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+                
+                <div class="col-md-6" style="padding-right:205px">         
+                    <a id="prob9" class="btn" href="/ncc/main/arena/9">       
+		      {% if userStats.problems_status.8 == '0' %}
+                        <span id="point"class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.8 == '1' %}
+			<span id="point"class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point"class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+            </div>
+	{% else %}
+        <div id="level 3" class="container">
+            <div class="row" style="margin-top:45px">
+
+                <div class="col-md-6" style="padding-left:205px">         
+                    <a id="prob9l" class="btn" href="#">       
+                        <span id="point" class="rippleLockedProblem"></span>
+                    </a>            
+                </div>
+                
+                <div class=" col-md-6" style="padding-right:205px">         
+                    <a id="prob8l" class="btn" href="#">       
+                        <span id="point" class="rippleLockedProblem"></span>
+                    </a>            
+                </div>
+	    </div>
+         </div>
+        {% endif %}
+
+	{% if userStats.current_level >= 2 %}
+        <div id="level 2" class=" container">
+            <div class="row" style="margin-top:45px">
+
+                <div class=" col-md-4">         
+                    <a id="prob5" class="btn" href="/ncc/main/arena/5">       
+		      {% if userStats.problems_status.4 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.4 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+
+                <div class=" col-md-4" style="padding-right:35px">         
+                    <a id="prob6" class="btn" href="/ncc/main/arena/6">  
+		      {% if userStats.problems_status.5 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.5 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}     
+                    </a>            
+                </div>
+
+                <div class=" col-md-4" style="padding-right:50px">         
+                    <a id="prob7" class="btn" href="/ncc/main/arena/7">       
+		      {% if userStats.problems_status.6 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.6 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+                
+            </div>
+        </div>
+	{% else %}
+	        <div id="level 2" class=" container">
+		<div class="row" style="margin-top:50px">
+
+                <div class=" col-md-4">         
+                    <a id="prob7l" class="btn" href="#">       
+                        <span id="point" class="rippleLockedProblem"></span>
+                    </a>            
+                </div>
+
+                <div class=" col-md-4" style="padding-right:35px">         
+                    <a id="prob6l" class="btn" href="#">       
+                        <span id="point" class="rippleLockedProblem"></span>
+                    </a>            
+                </div>
+
+                <div class=" col-md-4" style="padding-right:50px">         
+                    <a id="prob5l" class="btn" href="#">       
+                        <span id="point" class="rippleLockedProblem"></span>
+                    </a>            
+                </div>
+                
+            </div>
+        </div>
+	{% endif %}
+
+        <div id="level 1" class=" container">
+            <div class="row" style="margin-top:75px">
+                <div class=" col-md-3" style="padding-right:200px">         
+                    <a id="prob1" class="btn" href="/ncc/main/arena/1">
+		      {% if userStats.problems_status.0 == "0" %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.0 == "1" %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+
+                <div class=" col-md-3" style="padding-right:125px">  
+                    <a id="prob2" class="btn" href="/ncc/main/arena/2" rel="popover">   
+		      {% if userStats.problems_status.1 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.1 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}    
+                    </a>            
+                </div>
+
+                <div class=" col-md-3" style="padding-left:80px">         
+                    <a id="prob3" class="btn" href="/ncc/main/arena/3">       
+		      {% if userStats.problems_status.2 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.2 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}
+                    </a>            
+                </div>
+
+                <div class=" col-md-3" style="padding-left:150px">         
+                    <a id="prob4" class="btn" href="/ncc/main/arena/4">   
+		      {% if userStats.problems_status.3 == '0' %}
+                        <span id="point" class="rippleWrongProblem"></span>
+		      {% elif userStats.problems_status.3 == '1' %}
+			<span id="point" class="rippleSolvedProblem"></span>
+		      {% else %}
+			<span id="point" class="rippleUnsolvedProblem"></span>
+		      {% endif %}    
+                    </a>            
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+<script type="text/javascript">
+
+function load(data)
+{
+    if(data == "0")
+    var n = noty({text: ("<b>" + "Successfully submitted query, please wait for response and check your messages." + "<b>") , type: 'success', timeout: 3000});
+    else
+    var n = noty({text: ("<b>" + "You have exceeded your limit of sending queries. Please contact admin@computingcontest.in if you still have more queries" + "<b>") , type: 'error', timeout: 5000});
+    $('#clarify_div').hide();
+}
+
+
+
+$('#clarify_form').submit(function(){           
+//this jquery request is for the clarifications form
+    var formData = new FormData($('form')[0]);
+    $.ajax({
+        url: '/ncc/notifs/',  //Server script to process data
+        type: 'POST',
+        //Ajax events
+
+        //call return_status if POST request is successful
+        success: load,
+
+        // Form data
+        data: formData,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+    return false;
+}); 
+
+
+
+
+
+
+  var a = "{{userStats.score}}"
+  var question_name = new Array(),
+      question_points = new Array(),
+      users_attempted = new Array(),
+      users_solved = new Array();
+  
+  {% for problem in problem_data %}
+     question_name.push("{{ problem.name }}");
+     question_points.push({{problem.points}});
+     users_attempted.push(({{ problem.users_attempted_no }}));
+     users_solved.push({{ problem.users_solved_no }});     
+  {% endfor %}
+  
+  {% if locked %}
+  
+  var n = noty({text: ("That problem is locked, you can't access it yet. Solve the lower level problems first.")  , layout: 'center', timeout: 3000 , type: 'error'});
+  
+  {% endif %}
+  
+
+</script>
+
+
+<script src = "{% static 'node/js/bootstrap.js' %}"></script>
+<script src = "{% static 'node/js/nodes.js' %}"></script>
+
+<script src="{% static 'js/noty/layouts/center.js' %}"></script>
+<script src="{% static 'js/noty/themes/default.js' %}"></script>
+
+
+
+<style>
+body{
+padding: 350px
+}
+</style>
+</body>
+</html>

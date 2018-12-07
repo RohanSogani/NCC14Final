@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+ {% load staticfiles %}
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>NCC - MEET THE TEAM</title> 
+          <!-- Bootstrap core CSS -->
+      <link href = "{% static 'leaderboard/css/bootstrap.css' %}" rel = "stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="{% static 'leaderboard/css/leaderboard.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+    <div class = "navbar-wrapper navbar-inverse navbar-static-top">
+      <div class = "container-fluid">                               
+        <a href = "../../" class = "navbar-brand"><span class="glyphicon glyphicon-home"></span> NCC</a>
+       
+
+        <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+          <span class = "icon-bar"></span>
+        </button>
+
+        <div class = "collapse navbar-collapse navHeaderCollapse">                               
+          <ul class = "nav navbar-nav">                                      
+            <li><a href="javascript:window.history.back()"><span class="glyphicon glyphicon-remove"></span> Close</a></li>
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+
+      
+
+      <div class="container">
+        <div class="row" style="margin-left:150px;color:white;">
+          <div class="col-md-10"> <br> <br>
+            <h2 class="sub-header"style="text-align:center;">MEET THE TEAM</h2><br>
+            <div class="leadertable">
+            <p>
+<p>
+			<br />
+			<h3>
+			Our team consists of a group of 16 people, all second year students from different branches, who came together, as part of PISB (PICT IEEE Student Branch) to realize NCC as an online competition.
+			</h3>
+
+			<div align = "center" id = "backend">
+			<u><b>Backend</b>:</u><br />
+
+			<div id = "frontend">
+			<b><u>Frontend</b></u>:<br />
+			
+			<div id = "problems">
+			<u><b>Problem Makers</b></u>:<br />
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+	  </div>
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src = "{% static 'leaderboard/js/jquery-1.11.0.min.js' %}"></script>
+      <script src = "{% static 'leaderboard/js/bootstrap.js' %}"></script>
+    </body>
+  </html>
+

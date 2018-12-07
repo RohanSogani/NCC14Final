@@ -1,0 +1,50 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  /*padding-top: 50px;*/
+  background-image: url(../img/back_2.jpg);
+  width:100%;
+  height:100%; 
+}
+
+th
+{
+  text-align: center;
+  font-size: 21px;
+}
+
+.table{
+  font-family: "cf_5",Gadget,sans-serif;
+}
+
+h2{
+  font-family: "cf_5",Gadget,sans-serif;
+}
+
+@font-face {
+  font-family: "cf_5";
+  src: url(../fonts/cf_5.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "cf_3";
+  src: url(../fonts/cf_3.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "cf_1";
+  src: url(../fonts/cf_1.ttf) format("truetype");
+}
+
+a:focus{
+  outline: 0;
+  border: none;
+}
+
+.btn:focus{
+  outline: 0;
+  border: none;
+}
